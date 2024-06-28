@@ -3,7 +3,7 @@ data "aws_ami" "ubuntu" {
 
     filter {
         name   = "name"
-        values = ["ubuntu/images/hvm-ssd/*20.04-amd64-server-*"]
+        values = ["ubuntu/images/hvm-ssd/*22.04-amd64-server-*"]
     }
 
     filter {
@@ -15,12 +15,12 @@ data "aws_ami" "ubuntu" {
 }
 
 provider "aws" {
-  region  = "us-east-2"
+  region  = "us-east-1"
 }
 
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
   key_name      = "app-ssh-key"
 
   tags = {
